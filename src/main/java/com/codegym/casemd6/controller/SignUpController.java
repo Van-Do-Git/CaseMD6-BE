@@ -97,7 +97,7 @@ public class SignUpController {
     @GetMapping("/addroleandimage")
     public ResponseEntity<MesageRespons> fixRoleAndDefaultAvatar() {
         List<AppRole> appRoles = (List<AppRole>) serviceAppRole.findAll();
-        List<Image> images = (List<Image>) serviceImage.findAll();
+        Image images = serviceImage.findById(1L).get();
         if (appRoles.size() == 0) {
             AppRole admin = new AppRole();
             admin.setId(1L);
@@ -108,11 +108,9 @@ public class SignUpController {
             serviceAppRole.save(admin);
             serviceAppRole.save(user);
         }
-        if (images.size() == 0) {
-            Image image = new Image();
-            image.setId(1L);
-            image.setPath("https://firebasestorage.googleapis.com/v0/b/filebase-70567.appspot.com/o/images%2F84156601_1148106832202066_479016465572298752_o.jpg?alt=media&token=4ca2d074-2b3b-4524-a017-e951067fa3f5");
-            serviceImage.save(image);
+        if (images != null) {
+            images.setPath("https://1.bp.blogspot.com/-r8taaC_nv5U/XngOYFjbRVI/AAAAAAAAZnc/QjGkkHS78GMm6CocQ1OqrWGgQTkG1oQNACLcBGAsYHQ/s1600/Avatar-Facebook%2B%25281%2529.jpg");
+            serviceImage.save(images);
         }
         MesageRespons mesage = new MesageRespons();
         mesage.setMesage("ok");
