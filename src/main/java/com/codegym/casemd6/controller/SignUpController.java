@@ -94,8 +94,8 @@ public class SignUpController {
         return new ResponseEntity<>(result, httpStatus);
     }
 
-    @PutMapping("/addroleandimage")
-    public ResponseEntity<String> fixRoleAndDefaultAvatar() {
+    @GetMapping("/addroleandimage")
+    public ResponseEntity<MesageRespons> fixRoleAndDefaultAvatar() {
         List<AppRole> appRoles = (List<AppRole>) serviceAppRole.findAll();
         List<Image> images = (List<Image>) serviceImage.findAll();
         if (appRoles.size() == 0) {
@@ -114,7 +114,9 @@ public class SignUpController {
             image.setPath("https://firebasestorage.googleapis.com/v0/b/filebase-70567.appspot.com/o/images%2F84156601_1148106832202066_479016465572298752_o.jpg?alt=media&token=4ca2d074-2b3b-4524-a017-e951067fa3f5");
             serviceImage.save(image);
         }
-        return new ResponseEntity<>("ok", HttpStatus.OK);
+        MesageRespons mesage = new MesageRespons();
+        mesage.setMesage("ok");
+        return new ResponseEntity<>(mesage, HttpStatus.OK);
     }
 
 }
