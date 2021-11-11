@@ -17,7 +17,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-
 import java.util.List;
 
 
@@ -30,7 +29,6 @@ public class ClientController {
     ISongService songService;
     @Autowired
     IServiceComment serviceComment;
-
     @Autowired
     IServicePlaylist servicePlaylist;
 
@@ -104,4 +102,5 @@ public class ClientController {
         }
         return new ResponseEntity<>(songList, HttpStatus.OK);
     }
+
 }

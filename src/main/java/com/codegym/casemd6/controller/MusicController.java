@@ -258,4 +258,36 @@ public class MusicController {
         return new ResponseEntity<>(HttpStatus.OK);
 
     }
+
+    @PutMapping("/changePassword")
+    public ResponseEntity<?> changePassword(@RequestBody ChangePasswordDto changePasswordDto){
+        Account account = serviceAccount.findById(changePasswordDto.getIdAccount()).get();
+        if(account.getPassword().equals(changePasswordDto.getOldPassword())){
+            account.setPassword(changePasswordDto.getNewPassword());
+            MesageRespons mesageRespons = new MesageRespons();
+            mesageRespons.setMesage("ok");
+            serviceAccount.save(account);
+            return new ResponseEntity<>(mesageRespons, HttpStatus.OK);
+        }else {
+            MesageRespons mesageRespons = new MesageRespons();
+            mesageRespons.setMesage("NO");
+            return new ResponseEntity<>(mesageRespons,HttpStatus.OK);
+        }
+    }
+
+    @PutMapping("/editProfile")
+    public ResponseEntity<?> editProfile(@RequestBody EditAccountDto editAccountDto){
+        Account account = serviceAccount.findById(editAccountDto.getIdAccount()).get();
+        account.setFullName(editAccountDto.getFullName());
+        Image image = new Image();
+        image.setPath(editAccountDto.getPath());
+        image = serviceImage.add(image);
+        account.setAvatar(image);
+        account.setAddress(editAccountDto.getAddress());
+        serviceAccount.save(account);
+        return new ResponseEntity<>(HttpStatus.OK);
+
+    }
+
+
 }
