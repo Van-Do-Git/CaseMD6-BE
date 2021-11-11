@@ -167,9 +167,6 @@ public class MusicController {
             Song song = songService.findById(listIdSong.get(i)).get();
             if (song != null) {
                 songList.add(song);
-                List<Playlist> playlists = song.getPlaylists();
-                playlists.add(playlist);
-                songService.save(song);
             }
         }
         playlist.setSongs(songList);
