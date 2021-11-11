@@ -54,7 +54,7 @@ public class ServiceSong implements ISongService{
 
     @Override
     public Page<Song> findSongsBySingerContaining(Pageable pageable, String name) {
-        return songRepo.findSongsByNameContaining(name,pageable);
+        return songRepo.findSongsBySingerContaining(name,pageable);
     }
 
 

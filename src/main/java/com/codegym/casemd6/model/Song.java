@@ -37,7 +37,7 @@ public class Song{
     @JsonManagedReference
     private List<Comment> commentList;
 
-    @ManyToMany(fetch = FetchType.LAZY, targetEntity = Playlist.class,cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.LAZY, targetEntity = Playlist.class)
     @Fetch(value = FetchMode.SUBSELECT)
     private List<Playlist> playlists;
 }
